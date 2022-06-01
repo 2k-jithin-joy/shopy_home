@@ -34,7 +34,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="index.html">
             <img src="{% static 'images/logo.png' %}" alt="" /><span>
-              Zezmon
+              shopy_home
             </span>
           </a>
 
@@ -49,11 +49,21 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="service.html">
-                        Demo@gmail.com
+                        {% if user.is_authenticated %}
+
+                      Hi, {{user.username}}
+                      {% endif %}
                       </a>
                     </li>
                   </div>
                   <div class=" d-none d-lg-flex">
+                    <li>
+                      {% if user.is_authenticated %}
+                      <a class="nav-link" href="logout/">
+                        
+                        Logout
+                      </a></li>
+                      {% else %}
                     <li class="nav-item">
                       <a class="nav-link" href="login1/">
                         Login
@@ -64,6 +74,8 @@
                         Register
                       </a>
                     </li>
+                    {% endif %}
+                    
                     <form class="form-inline my-2 ml-5 mb-3 mb-lg-0">
                       <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
                     </form>
