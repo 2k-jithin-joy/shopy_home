@@ -75,11 +75,11 @@ WSGI_APPLICATION = 'shopy_home.wsgi.application'
 
 DATABASES = {
     'default' : {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': BASE_DIR/ 'shopy_homedb',
-        'USER': 'root',
-        'PASSWORD': 'sreekovil',
-        'HOST': 'localhost',
+        'ENGINE':'django.db.backends.mysql',
+        'NAME':'shopy_homedb',
+        'USER':'root',
+        'PASSWORD':'sreekovil',
+        'HOST':'localhost',
     }
 }
 
