@@ -36,7 +36,8 @@
 </head>
 <body bgcolor="#e83e8c">
    <center>
-       <form action="registersub/">
+       <form action="{% url 'regpage' %}" method="post">
+        {% csrf_token %}
         <div class="loginbox">
             <p><font color="red">{{lng}}</font></p>
         <h2>Register</h2>

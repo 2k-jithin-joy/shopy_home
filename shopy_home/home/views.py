@@ -21,35 +21,31 @@ def log(request):
         return render(request,'login.html')
 
 def reg(request):
-    print("hello",request)
-    return render(request,'register.html')
-
-def registersub(request):
-    user=request.GET['uname']
-    fnm=request.GET['fname']
-    lnm=request.GET['lname']
-    eml=request.GET['email']
-    pas=request.GET['p_w']
-    rep=request.GET['re-p_w']
-    if user != '' and eml !='' and pas != '':
-        if User.objects.filter(username=user).exists() or User.objects.filter(email=eml).exists():
-            msg="username or email is already taken"
-            return render(request,'register.html',{'lng':msg})
+    if request.method=='POST':
+        user=request.POST['uname']
+        fnm=request.POST['fname']
+        lnm=request.POST['lname']
+        eml=request.POST['email']
+        pas=request.POST['p_w']
+        rep=request.POST['re-p_w']
+        if user != '' and eml !='' and pas != '':
+            if User.objects.filter(username=user).exists() or User.objects.filter(email=eml).exists():
+                msg="username or email is already taken"
+                return render(request,'register.html',{'lng':msg})
+            elif pas!=rep:
+                msg="password is not matching"
+                return render(request,'register.html',{'lng':msg})
+            else:
+                userw=User.objects.create_user(username=user,first_name=fnm,last_name=lnm,email=eml,password=pas)
+                userw.save();
+                auth.login(request,userw)
+                return redirect('/')
         else:
-            return redirect('/')
+            msg="invalid"
+            return render(request,'register.html',{'lng':msg})
     else:
-        msg="invalid"
-        return render(request,'register.html',{'lng':msg})
-        
-        
-    
-        
-        
-        
-    
-        
-    print(user,fnm,lnm,eml,pas)
-    return render(request,'sample.html')
+        return render(request,'register.html')
+     
 def logout(request):
     auth.logout(request)
     return redirect("/")
