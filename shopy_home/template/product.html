@@ -3,6 +3,7 @@
   {% load static %}
 
 <head>
+
   <!-- Basic -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,6 +25,48 @@
   <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+  <style>
+    .comment-box{
+      width: 500px;
+      height: 350px;
+      background-color: rgb(17, 17, 54);
+      border: 3px solid brown;
+      overflow: auto;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .comment-box p{
+      background-color: rgb(137, 110, 168);
+      padding: 5px;
+      margin: 10px;
+      padding-left: 30px;
+      border-radius: 10px;
+      color: aliceblue;
+    }
+    .comment-input{
+      width: 500px;
+      border: 3px solid brown;
+      padding: 10px;
+      background-color:rgb(17, 17, 54);
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .comment-input textarea{
+      width: 350px;
+      height: 80px;
+      padding: 10px;
+      border-radius: 10px;
+
+    }
+    .comment-input button{
+      width: 80px;
+      height: 35px;
+      background-color: brown;
+      border-radius: 10px;
+      color: rgb(202, 199, 199);
+      margin-top: 10px;
+    }
+  </style>
 </head>
 
 <body class="sub_page">
@@ -110,15 +153,34 @@
               <p>
                 {{lng.desc}}
               </p>
-              
-          
           </div>
-        
-        
-        
-        
+      </div>
+      <h1><i>comments</i></h1>
+      <div class="comment-box">
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+
+      </div>
+      <div class="comment-input">
+        <textarea></textarea><br>
+        <button>submit</button>
+
       </div>
     </div>
+    
+
   </section>
 
   <!-- end products section -->
