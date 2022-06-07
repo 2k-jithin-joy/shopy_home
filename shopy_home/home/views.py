@@ -1,11 +1,17 @@
 from urllib import request
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import auth,User
+from product.models import accessories
 #from django.http import HttpResponse
 
 
 def index(request):
-    return render(request,'index.html')
+    pro=accessories.objects.all()
+    #print("hello",pro)
+    
+    return render(request,'index.html',{'pro':pro})
+
+
 def log(request):
     if request.method=='POST':
         user=request.POST['uname']
@@ -19,6 +25,8 @@ def log(request):
             return render(request,'login.html',{'lng':msg})
     else:  
         return render(request,'login.html')
+    
+    
 
 def reg(request):
     if request.method=='POST':
@@ -45,6 +53,8 @@ def reg(request):
             return render(request,'register.html',{'lng':msg})
     else:
         return render(request,'register.html')
+    
+    
      
 def logout(request):
     auth.logout(request)
