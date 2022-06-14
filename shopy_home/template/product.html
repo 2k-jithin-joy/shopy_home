@@ -141,7 +141,7 @@
       <div class="product_container">
         
           <div class="product_box">
-              <img src="{{lng.image.url}}" alt="" />
+              <img src="{{lng.image.url}}" alt="" width="280px" height="290px"  />
               
           
           </div>
@@ -157,27 +157,26 @@
       </div>
       <h1><i>comments</i></h1>
       <div class="comment-box">
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
-        <p><b>Good</b><br>samjan<small> 12-02-2002</small></p>
+        {% if not lng.comments.all %}
+        <h2>Not any comment</h2>
+        {% else %}
+        {% for cmd in lng.comments.all %}
+        <p><b>{{cmd.body}}</b><br>{{cmd.name}}<small>{{cmd.date}}</small></p>
+      {% endfor %}
+      {% endif %}
 
       </div>
+      {% if user.is_authenticated %}
       <div class="comment-input">
-        <textarea></textarea><br>
-        <button>submit</button>
+        <form action="comment/">
+        <textarea name="cmd"></textarea><br>
+        <input type="hidden" name="user" value="{{user.username}}">
+        <input type="hidden" name="product" value="{{lng.id}}">
+        <button type="submit">submit</button>
+      </form>
 
       </div>
+      {% endif %}
     </div>
     
 
@@ -491,6 +490,7 @@
       document.getElementById("myNav").style.width = "0%";
     }
   </script>
+</form>
 </body>
 
 </html>

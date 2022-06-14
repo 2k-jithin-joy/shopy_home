@@ -4,7 +4,8 @@ from product import views
 
 urlpatterns = [
     
-    path('',views.pro)
+    path('',views.pro),
+    path('comment/',views.comm),
 
 
 ]

@@ -10,7 +10,7 @@ class accessories(models.Model):
     def __str__(self):
         return self.name
     
-class comment(model.Models):
+class comment(models.Model):
     product=models.ForeignKey(accessories,related_name='comments',on_delete=models.CASCADE)
     name=models.CharField(max_length=30)
     body=models.TextField()
