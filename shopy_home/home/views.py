@@ -2,6 +2,7 @@ from urllib import request
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import auth,User
 from product.models import accessories
+
 #from django.http import HttpResponse
 
 
