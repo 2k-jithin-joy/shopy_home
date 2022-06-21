@@ -9,8 +9,11 @@ from product.models import accessories
 def index(request):
     pro=accessories.objects.all()
     #print("hello",pro)
-    
-    return render(request,'index.html',{'pro':pro})
+    if 'fname' in request.COOKIES:
+        var=request.COOKIES['fname']
+        return render(request,'index.html',{'pro':pro,'asd':var})
+    else:
+        return render(request,'index.html',{'pro':pro})
 
 
 def log(request):
@@ -20,7 +23,13 @@ def log(request):
         valid=auth.authenticate(username=user,password=pas)
         if valid is not None:
             auth.login(request,valid)
-            return redirect('/')
+            gen=redirect('/')
+            first=User.objects.get(username=user)
+            first.first_name
+            gen.set_cookie('fname',first.first_name)
+            gen.set_cookie('valid',True)
+            
+            return gen
         else:
             msg="invalid user name and password"
             return render(request,'login.html',{'lng':msg})
@@ -59,8 +68,10 @@ def reg(request):
      
 def logout(request):
     auth.logout(request)
-    return redirect("/")
-    
+    co=redirect("/")
+    co.delete_cookie('fname')
+    co.delete_cookie('valid')
+    return co
 
 
 # Create your views here.
