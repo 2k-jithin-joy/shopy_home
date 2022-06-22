@@ -66,6 +66,10 @@
       color: rgb(202, 199, 199);
       margin-top: 10px;
     }
+    .session img{
+      border: 2px solid black;
+      border-radius: 10px;
+    }
   </style>
 </head>
 
@@ -145,6 +149,11 @@
               
           
           </div>
+
+
+         
+
+
           <div class="product_box">
               <center>
                 <h3>{{lng.name}}</h3>
@@ -153,8 +162,19 @@
               <p>
                 {{lng.desc}}
               </p>
+              
           </div>
+         
       </div>
+<!-- session for product -->
+      <div class="session">
+        {% for i in pro %}
+        <img src="{{i.image.url}}" alt="" width="100px" height="130px"  />
+        {% endfor %}
+        
+      </div>
+<!-- session end-->
+
       <h1><i>comments</i></h1>
       <div class="comment-box">
         {% if not lng.comments.all %}

@@ -17,6 +17,28 @@ def pro(request):
         cache.set(s_id,var)
     return render(request,'product.html',{'lng':var})
 
+#session
+def pro2(request):
+    s_id=request.GET['id']
+    var=accessories.objects.get(id=s_id)
+    if 'pre_history'in request.session:
+        if s_id in request.session['pre_history']: 
+            request.session['pre_history'].remove(s_id)
+        pro_store=accessories.objects.filter(id__in=request.session['pre_history'])
+        #pro_duct=sorted(pro_store,pro=lambda x: request.session['pre_history'].index(x.id))
+        request.session['pre_history'].insert(0,s_id)
+        print("STORE::",pro_store)
+        if len(request.session['pre_history'])>4:
+            request.session['pre_history'].pop()
+        print(request.session['pre_history'])
+    else:
+        request.session['pre_history']=[s_id]
+        pro_store=accessories.objects.filter(id=s_id)
+    request.session.modified=True
+    return render(request,'product.html',{'lng':var,'pro':pro_store})
+    
+    
+
 
 
 
