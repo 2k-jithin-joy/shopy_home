@@ -9,6 +9,8 @@ class accessories(models.Model):
     
     def __str__(self):
         return self.name
+    class Meta():
+        ordering=('-date',)
     
 class comment(models.Model):
     product=models.ForeignKey(accessories,related_name='comments',on_delete=models.CASCADE)
