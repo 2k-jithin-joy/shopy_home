@@ -15,6 +15,21 @@
   <meta name="author" content="" />
 
   <title>Zezmon</title>
+  <style>
+  .searchbox{
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 8px;
+
+
+  }
+  .button{
+    border-radius: 16px;
+    border: 1px solid black;
+    background-color: #e83e8c;
+    
+  }
+</style>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
@@ -25,6 +40,7 @@
   <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -292,6 +308,18 @@
       <p>
         Featured Product Just Arrived
       </p>
+    </div>
+    <!--search section-->
+    <div >
+      
+      <center>
+        <form action="{% url 'home page' %}" method="post">
+          {% csrf_token %}
+        <input type="text" id="search" class="searchbox" name="n_ame">
+        <button type="submit" class="button">search</button>
+      </form>
+      </center>
+      
     </div>
     <div class="container layout_padding">
       <div class="product_container">
@@ -809,6 +837,16 @@
       document.getElementById("myNav").style.width = "0%";
     }
   </script>
+  <script>
+    $( function(){
+    $("#search").autocomplete({
+      source:"{% url 'searching' %}"
+    });
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
 </body>
 
 </html>

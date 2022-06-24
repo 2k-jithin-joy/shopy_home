@@ -2,18 +2,25 @@ from urllib import request
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import auth,User
 from product.models import accessories
+from django.http.response import JsonResponse
+from django.db.models.query_utils import Q
 
 #from django.http import HttpResponse
 
 
 def index(request):
     pro=accessories.objects.all()
-    #print("hello",pro)
-    if 'fname' in request.COOKIES:
-        var=request.COOKIES['fname']
-        return render(request,'index.html',{'pro':pro,'asd':var})
-    else:
+    if request.method=='POST':
+        searching_name=request.POST['n_ame']
+        pro=accessories.objects.filter(Q(name__istartswith=searching_name))
         return render(request,'index.html',{'pro':pro})
+    else:
+        #print("hello",pro)
+        if 'fname' in request.COOKIES:
+            var=request.COOKIES['fname']
+            return render(request,'index.html',{'pro':pro,'asd':var})
+        else:
+            return render(request,'index.html',{'pro':pro})
 
 
 def log(request):
@@ -72,6 +79,18 @@ def logout(request):
     co.delete_cookie('fname')
     co.delete_cookie('valid')
     return co
+#searching
+
+def search(request):
+    if 'term' in request.GET:
+        sac=request.GET['term']
+        fet=accessories.objects.filter(Q(name__istartswith=sac))
+        al=[]
+        for i in fet:
+            al.append(i.name)
+        return JsonResponse(al,safe=False)
+    return redirect('/')
+
 
 
 # Create your views here.
