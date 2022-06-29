@@ -9,6 +9,7 @@ urlpatterns = [
     path('register/',views.reg,name="regpage"),
     path('logout/',views.logout),
     path('search/',views.search,name="searching"),
-    path('feed/',feed_pro(),name='feed')
+    path('feed/',feed_pro(),name='feed'),
+    path('sign/',views.sign)
     
 ]

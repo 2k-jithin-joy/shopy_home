@@ -2,8 +2,12 @@ from urllib import request
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import auth,User
 from product.models import accessories
+#json
 from django.http.response import JsonResponse
 from django.db.models.query_utils import Q
+#email
+from django.conf import settings
+from django.core.mail import send_mail
 
 #from django.http import HttpResponse
 
@@ -94,3 +98,11 @@ def search(request):
 
 
 # Create your views here.
+def sign(request):
+    sig=request.GET['host']
+    email_from=settings.EMAIL_HOST_USER
+    email_to=['jithinjoysreekovil@gmail.com']
+    msg="Hello .\n\n"+"Jithin"+"\t have a nice day!"
+    subject="invitation"
+    send_mail(subject,msg,email_from,email_to)
+    return redirect('/')
