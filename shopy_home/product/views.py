@@ -47,8 +47,16 @@ def comm(request):
     pro=request.GET['product']
     com=request.GET['cmd']
     users=User.objects.get(id=user)
-    commnt_var=comment.objects.create(body=com,name=users.username,product_id=pro)
-    commnt_var.save();
+    print("xxxx",users )
+    comm_fet=comment.objects.filter(product_id=pro)
+    print(comm_fet)
+    li=[]
+    for i in comm_fet:
+        li.append(i.name)
+    print("name::",li)
+    if users.username not in li:  
+        commnt_var=comment.objects.create(body=com,name=users.username,product_id=pro)
+        commnt_var.save();
     return redirect('/product/?id='+pro)
     
 
